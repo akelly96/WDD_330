@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WDD 330 Portfolio</title>
+        <style>
+            body {
+                margin-left: 80px;
+                margin-right:80px;
+                height: 100vh;
+            }
+
+            #header {
+                padding-top:10px;
+                text-align: center;
+                padding-bottom: 10px;
+                background:#FAF1CE;
+                border-radius:4px;
+                margin-bottom:20px;
+            }
+
+            #headerText {
+                display:inline-block;
+                color: #252525;
+                margin-top:10px;
+                margin-bottom:10px;
+                font: 36px/38px Helvetica;
+                vertical-align: middle;
+                width:80%;
+                
+            }
+
+            img {
+                border-radius:4px;
+                margin-right:16px;
+            }
+
+            #hamburger {
+                float:left;
+                margin-left: 16px;
+                margin-top:0px;
+                cursor:pointer;
+                margin-right:16px;
+                font: 24px/26px Helvetica;
+                margin-top:16px;
+            }
+
+            #hamburger:hover {
+               color:#808080; 
+            }
+
+            #sideNavigation {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background:#FAF1CE;
+                overflow-x: hidden;
+                overflow-y:hidden;
+                transition: 0.5s;
+                box-shadow: 0 0 10px #000000;
+                padding-top: 20px;
+            }
+
+            #sideNavigation div {
+                display: block;
+                padding-left:20px;
+            }
+
+            #sideNavigation div p {
+                cursor: pointer;
+                font: 16px/28px Helvetica;
+                display: inline-block;
+                margin-top: 0px;
+                margin-bottom:8px;
+            }
+
+            #sideNavigation div p:hover, #sideNavigation #closeButton:hover {
+                color: lightgray;
+            }
+
+            #sideNavigation #closeButton {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font: 30px/32px Helvetica;
+                font-size: 36px;
+                margin-left: 50px;
+                cursor:pointer;
+            }
+
+            @media screen and (max-width:813px){
+                body {
+                    margin-left: 12px;
+                    text-align: center;
+                    margin-right:12px;
+                }
+            }
+            @media screen and (max-width: 675px) {
+                #hamburger {
+                    margin-top:38px;
+                }
+            }
+        </style>
+        
+        <script>
+            var openedSection
+
+            function setOpenedSection() {
+                var section = localStorage.getItem("openedSection");
+                if (section){
+                    openedSection = document.getElementById(section);
+                } else {
+                    openedSection = document.getElementById("HomePage");
+                }
+                openedSection.style.display = "block";
+            }
+
+            function openNavigation() {
+                document.getElementById("sideNavigation").style.width = "250px";
+            }
+
+            function closeNavigation() {
+                document.getElementById("sideNavigation").style.width = "0";
+            }
+
+            function displaySection(section) {
+                openedSection.style.display = "none";
+                openedSection = document.getElementById(section);
+                localStorage.setItem("openedSection", section);
+                openedSection.style.display = "block";
+            }
+        </script>
+        
+    </head>
+    <body onclick="closeNavigation()" onload="setOpenedSection()">
+        <div id="header">
+            <p id="hamburger" onclick="event.stopPropagation(); openNavigation()">&#x2630;</p>
+            <h2 id="headerText">Austin Kelly's WDD 330 Portfolio</h2>
+        </div>
+        <div id="sideNavigation" onclick="event.stopPropagation()">
+            <div id="closeButton" onclick="closeNavigation()">&times;</div>
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('HomePage'); closeNavigation()">Home</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week1'); closeNavigation()">Week 1</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week2'); closeNavigation()">Week 2</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week3'); closeNavigation()">Week 3</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week4'); closeNavigation()">Week 4</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week5'); closeNavigation()">Week 5</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week6'); closeNavigation()">Week 6</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week7'); closeNavigation()">Week 7</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week8'); closeNavigation()">Week 8</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week9'); closeNavigation()">Week 9</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week10'); closeNavigation()">Week 10</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week11'); closeNavigation()">Week 11</p>
+            </div>            
+            <div class="navigationButton">
+                <p class="navButtonText" onclick="displaySection('week12'); closeNavigation()">Week 12</p>
+            </div>
+        </div>
+        <div id="HomePage" style="display:none">
+            <img src="./Assets/Austin_Kelly.JPG" />
+        </div>
+        <div id="week1" style="display:none">
+            <h2>Week 1</h2>
+            <ul style="list-style: none;">
+                <li>
+                    <a href="week1/notes.html">Notes</a> 
+                </li>
+                <li>
+                    <p>There are no exercises for this week!</p>
+                </li>
+            </ul>
+        </div>
+        <div id="week2" style="display:none">
+            <h2>Week 2</h2>
+            <ul style="list-style: none;">
+                <li>
+                    <a href="week2/exercises.html">Exercises</a> 
+                </li>
+                <li>
+                    <a href="week2/notes.html">Notes</a>
+                </li>
+            </ul>
+        </div>
+        <div id="week3" style="display:none">
+            <p>Week 3 Placeholder</p>
+        </div>
+        <div id="week4" style="display:none">
+            <p>Week 4 Placeholder</p>
+        </div>
+        <div id="week5" style="display:none">
+            <p>Week 5 Placeholder</p>
+        </div>
+        <div id="week6" style="display:none">
+            <p>Week 6 Placeholder</p>
+        </div>
+        <div id="week7" style="display:none">
+            <p>Week 7 Placeholder</p>
+        </div>
+        <div id="week8" style="display:none">
+            <p>Week 8 Placeholder</p>
+        </div>
+        <div id="week9" style="display:none">
+            <p>Week 9 Placeholder</p>
+        </div>
+        <div id="week10" style="display:none">
+            <p>Week 10 Placeholder</p>
+        </div>
+        <div id="week11" style="display:none">
+            <p>Week 11 Placeholder</p>
+        </div>
+        <div id="week12" style="display:none">
+            <p>Week 12 Placeholder</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Week 2 Exercises</title>
+        <style>
+            input {
+                width: 48px;
+                height: 30px;
+                border: 1px solid #000000;
+                border-radius: 4px;
+                margin:4px;
+                margin-top:24px;
+            }
+            #bLabel {
+                margin-left: 16px;
+            }
+            button {
+                display:block;
+                cursor:pointer;
+                margin-top:24px;
+            }
+            h2 {
+                margin-bottom:0px;
+            }
+        </style>
+        
+        <script>
+            function triangleLoop() {
+                var line = "";
+                for (var i = 0; i < 7; i++){
+                    line += "#";
+                    console.log(line)
+                }
+            }
+
+            function fizzBuzz() {
+                for (var i = 0; i < 100; i++) {
+                    if ((i + 1) % 15 === 0) {
+                        console.log(i + 1 + ": fizzbuzz");
+                    } else if ((i + 1) % 3 === 0) {
+                        console.log(i + 1 + ": fizz");
+                    } else if ((i + 1) % 5 === 0){
+                        console.log(i + 1 + ": buzz");
+                    }
+                }
+            }
+
+            function chessBoard() {
+                var binding = 8;
+                var output;
+                for (var i = 0; i < binding; i++) {
+                    output = "";
+                    for (var j = 0; j < binding; j++){
+                        if (i % 2 === 0){
+                            if (j % 2 === 0) {
+                                output += " ";
+                            }else {
+                                output += "#";
+                            }
+                        }else {
+                            if (j % 2 === 0) {
+                                output += "#";
+                            }else {
+                                output += " ";
+                            }
+                        }
+                    }
+                    console.log(output);
+                }
+            }
+
+            function compare() {
+                var a = document.getElementById("a").value;
+                var b = document.getElementById("b").value;
+                if (a && b){
+                    if (a > b) {
+                        return "A is greater than B";
+                    } else if (b > a) {
+                        return "B is greater than A";
+                    } else {
+                        return "A is equal to B";
+                    }
+                } else {
+                    return "Please Enter two numbers to compare";
+                }
+            }
+
+            function checkNumbers() {
+                console.log("50: " + isEven(50));
+                console.log("75: " + isEven(75));
+                console.log("-1: " + isEven(-1));
+            }
+
+            function isEven(N) {
+                N = Math.abs(N)
+                if (N === 0){
+                    return true;
+                } else if (N === 1) {
+                    return false;
+                } else {
+                    return isEven(N - 2);
+                }
+            }
+
+            function count() {
+                console.log(countBs("BBC"));
+                console.log(countChar("kakkerlak", "k"));
+            }
+
+            function countBs(str) {
+                var count = 0;
+                for (var i = 0; i < str.length; i++) {
+                    if (str[i] === "B"){
+                    count++;
+                    }
+                }
+                return count;
+            }
+
+            function countChar(str, char) {
+                var count = 0;
+                for (var i = 0; i < str.length; i++) {
+                    if (str[i] === char){
+                    count++;
+                    }
+                }
+                return count;
+            }
+            
+            function runRange() {
+                console.log(range(1, 10));
+                console.log(range(5, 2, -1));
+                console.log(sum(range(1, 10)));
+            }
+
+            function range(a, b, c) {
+                if (!c || c == 0) {
+                    c = 1;
+                }
+                var i;
+                var array = [];
+                if (c > 0) {
+                    for (i = a; i <= b; i += c) {
+                    array.push(i);
+                    }
+                } else if (c < 0) {
+                    for (i = a; i >= b; i += c) {
+                    array.push(i); 
+                    }
+                }
+                return array;
+            }
+
+            function sum(array) {
+                var sum = 0;
+                for (var i = 0; i < array.length; i++) {
+                    sum += array[i];
+                }
+                return sum;
+            }
+
+            function runReverseArray() {
+                console.log(reverseArray(["A", "B", "C"]));
+                // → ["C", "B", "A"];
+                let arrayValue = [1, 2, 3, 4, 5];
+                reverseArrayInPlace(arrayValue);
+                console.log(arrayValue);
+                // → [5, 4, 3, 2, 1]
+            }
+
+            function reverseArray(array) {
+                var newArray = [];
+                for (var i = array.length; i > 0; i--) {
+                    newArray.push(array[i - 1]);
+                }
+                return newArray
+            }
+
+            function reverseArrayInPlace(array) {
+                var b;
+                for (var i = 0; i < array.length / 2; i++) {
+                    b = array[i];
+                    array[i] = array[array.length - 1 - i];
+                    array[array.length - 1 - i] = b;
+                }
+            }
+            function runArrayTest() {
+                console.log(arrayToList([10, 20]));
+                // → {value: 10, rest: {value: 20, rest: null}}
+                console.log(listToArray(arrayToList([10, 20, 30])));
+                // → [10, 20, 30]
+                console.log(prepend(10, prepend(20, null)));
+                // → {value: 10, rest: {value: 20, rest: null}}
+                console.log(nth(arrayToList([10, 20, 30]), 1));
+                // → 20
+            }
+
+            function arrayToList(array) {
+                var list = null;
+                for (var i = array.length - 1; i >= 0; i--) {
+                    list = {value: array[i], rest: list};
+                }
+                return list;
+            }
+
+            function listToArray(list) {
+                var array = [];
+                var section = list;
+                while (section) {
+                    array.push(section.value);
+                    section = section.rest;
+                }
+                return array;
+            }
+
+            function prepend(value, list) {
+                return {value: value, rest: list}
+            }
+
+            function nth(list, index) {
+                if (!list) {
+                    return undefined;
+                } else if (index === 0) {
+                    return list.value;
+                } else {
+                    return nth(list.rest, index - 1)
+                }
+            }
+
+            function runDeepEqual() {
+                let obj = {here: {is: "an"}, object: 2};
+                console.log(deepEqual(obj, obj));
+                // → true
+                console.log(deepEqual(obj, {here: 1, object: 2}));
+                // → false
+                console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+                // → true
+            }
+
+            function deepEqual(a, b){
+                if (a === b) {
+                    return true;
+                }
+                
+                if ((a != null && typeof(a) === "object") &&
+                    (b != null && typeof(b) === "object")) {
+                    if (Object.keys(a).length !== Object.keys(b).length) {
+                        return false;      
+                    } else {
+                        for (var key of Object.keys(a)) {
+                            if(!Object.keys(b).includes(key) || !deepEqual(a[key], b[key])) {
+                            return false;
+                            }
+                        }
+                        return true;
+                    }
+                } else {
+                    return false; 
+                }
+            }
+        </script>
+        
+    </head>
+    <body>
+        <h2>Looping a triangle</h2>
+        <button onclick="triangleLoop()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function triangleLoop() {
+                var line = "";
+                for (var i = 0; i &lt; 7; i++){
+                    line += "#";
+                    console.log(line)
+                }
+            }
+        </pre>
+        <h2>Fizz Buzz</h2>
+        <button onclick="fizzBuzz()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function fizzBuzz() {
+                for (var i = 0; i &lt; 100; i++) {
+                    if ((i + 1) % 15 === 0) {
+                        console.log(i + 1 + ": fizzbuzz");
+                    } else if ((i + 1) % 3 === 0) {
+                        console.log(i + 1 + ": fizz");
+                    } else if ((i + 1) % 5 === 0){
+                        console.log(i + 1 + ": buzz");
+                    }
+                }
+            }
+        </pre>
+        <h2>Chess Board</h2>
+        <button onclick="chessBoard()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function chessBoard() {
+                var binding = 8;
+                var output;
+                for (var i = 0; i &lt; binding; i++) {
+                    output = "";
+                    for (var j = 0; j &lt; binding; j++){
+                        if (i % 2 === 0){
+                            if (j % 2 === 0) {
+                                output += " ";
+                            }else {
+                                output += "#";
+                            }
+                        }else {
+                            if (j % 2 === 0) {
+                                output += "#";
+                            }else {
+                                output += " ";
+                            }
+                        }
+                    }
+                    console.log(output);
+                }
+            }
+        </pre>
+        <h2>Minimum</h2>
+        <label for="a">A:</label>
+        <input type="number" id="a" />
+        <label for="b" id="bLabel">B:</label>
+        <input type="number" id="b" />
+        <button onclick="console.log(compare())">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function compare() {
+                var a = document.getElementById("a").value;
+                var b = document.getElementById("b").value;
+                if (a && b){
+                    if (a &gt; b) {
+                        return "A is greater than B";
+                    } else if (b &gt; a) {
+                        return "B is greater than A";
+                    } else {
+                        return "A is equal to B";
+                    }
+                } else {
+                    return "Please Enter two numbers to compare";
+                }
+            }
+        </pre>
+        <h2>Recursion</h2>
+        <button onclick="checkNumbers()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function checkNumbers() {
+                console.log("50: " + isEven(50));
+                console.log("75: " + isEven(75));
+                console.log("-1: " + isEven(-1));
+            }
+
+            function isEven(N) {
+                N = Math.abs(N)
+                if (N === 0){
+                    return true;
+                } else if (N === 1) {
+                    return false;
+                } else {
+                    return isEven(N - 2);
+                }
+            }
+        </pre>
+        <h2>Bean Counting</h2>
+        <button onclick="count()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b> 
+
+            function count() {
+                console.log(countBs("BBC"));
+                console.log(countChar("kakkerlak", "k"));
+            }
+
+            function countBs(str) {
+                var count = 0;
+                for (var i = 0; i &lt; str.length; i++) {
+                    if (str[i] === "B"){
+                    count++;
+                    }
+                }
+                return count;
+            }
+
+            function countChar(str, char) {
+                var count = 0;
+                for (var i = 0; i &lt; str.length; i++) {
+                    if (str[i] === char){
+                    count++;
+                    }
+                }
+                return count;
+            }
+        </pre>
+        <h2>The Sum of a Range</h2>
+        <button onclick="runRange()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function runRange() {
+                console.log(range(1, 10));
+                console.log(range(5, 2, -1));
+                console.log(sum(range(1, 10)));
+            }
+
+            function range(a, b, c) {
+                if (!c || c == 0) {
+                  c = 1;
+                }
+                var i;
+                var array = [];
+                if (c &gt; 0) {
+                  for (i = a; i &lt;= b; i += c) {
+                    array.push(i);
+                  }
+                } else if (c &lt; 0) {
+                  for (i = a; i &gt;= b; i += c) {
+                    array.push(i); 
+                  }
+                }
+                return array;
+              }
+
+              function sum(array) {
+                var sum = 0;
+                for (var i = 0; i &lt; array.length; i++) {
+                  sum += array[i];
+                }
+                return sum;
+              }
+        </pre>
+        <h2>Reversing an Array</h2>        
+        <button onclick="runReverseArray()">RUN EXERCISE</button>
+        <pre>
+            <b>Code: </b>
+
+            function runReverseArray() {
+                console.log(reverseArray(["A", "B", "C"]));
+                // → ["C", "B", "A"];
+                let arrayValue = [1, 2, 3, 4, 5];
+                reverseArrayInPlace(arrayValue);
+                console.log(arrayValue);
+                // → [5, 4, 3, 2, 1]
+            }
+
+            function reverseArray(array) {
+                var newArray = [];
+                for (var i = array.length; i &gt; 0; i--) {
+                    newArray.push(array[i - 1]);
+                }
+                return newArray
+            }
+
+            function reverseArrayInPlace(array) {
+                var b;
+                for (var i = 0; i &lt; array.length / 2; i++) {
+                    b = array[i];
+                    array[i] = array[array.length - 1 - i];
+                    array[array.length - 1 - i] = b;
+                }
+            }
+        </pre>
+        <h2>A List</h2>
+        <button onclick="runArrayTest()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function runArrayTest() {
+                console.log(arrayToList([10, 20]));
+                // → {value: 10, rest: {value: 20, rest: null}}
+                console.log(listToArray(arrayToList([10, 20, 30])));
+                // → [10, 20, 30]
+                console.log(prepend(10, prepend(20, null)));
+                // → {value: 10, rest: {value: 20, rest: null}}
+                console.log(nth(arrayToList([10, 20, 30]), 1));
+                // → 20
+            }
+
+            function arrayToList(array) {
+                var list = null;
+                for (var i = array.length - 1; i &gt;= 0; i--) {
+                    list = {value: array[i], rest: list};
+                }
+                return list;
+            }
+
+            function listToArray(list) {
+                var array = [];
+                var section = list;
+                while (section) {
+                    array.push(section.value);
+                    section = section.rest;
+                }
+                return array;
+            }
+
+            function prepend(value, list) {
+                return {value: value, rest: list}
+            }
+
+            function nth(list, index) {
+                if (!list) {
+                    return undefined;
+                } else if (index === 0) {
+                    return list.value;
+                } else {
+                    return nth(list.rest, index - 1)
+                }
+            }
+        </pre>
+        <h2>Deep Equal</h2>
+        <button onclick="runDeepEqual()">RUN EXERCISE</button>
+        <pre>
+            <b>Code:</b>
+
+            function runDeepEqual() {
+                let obj = {here: {is: "an"}, object: 2};
+                console.log(deepEqual(obj, obj));
+                // → true
+                console.log(deepEqual(obj, {here: 1, object: 2}));
+                // → false
+                console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+                // → true
+            }
+
+            function deepEqual(a, b){
+                if (a === b) {
+                    return true;
+                }
+                
+                if ((a != null && typeof(a) === "object") &&
+                    (b != null && typeof(b) === "object")) {
+                    if (Object.keys(a).length !== Object.keys(b).length) {
+                        return false;      
+                    } else {
+                        for (var key of Object.keys(a)) {
+                            if(!Object.keys(b).includes(key) || !deepEqual(a[key], b[key])) {
+                            return false;
+                            }
+                        }
+                        return true;
+                    }
+                } else {
+                    return false; 
+                }
+            }
+        </pre>
+    </body>
+</html>
