@@ -110,11 +110,15 @@
 
             function setOpenedSection() {
                 var section = localStorage.getItem("openedSection");
+                
                 if (section){
                     openedSection = document.getElementById(section);
                 } else {
-                    openedSection = document.getElementById("HomePage");
+                    console.log(openedSection)
+                    openedSection = document.getElementById("week1");
+                console.log(openedSection)
                 }
+                
                 openedSection.style.display = "block";
             }
 
@@ -141,10 +145,7 @@
             <h2 id="headerText">Austin Kelly's WDD 330 Portfolio</h2>
         </div>
         <div id="sideNavigation" onclick="event.stopPropagation()">
-            <div id="closeButton" onclick="closeNavigation()">&times;</div>
-            <div class="navigationButton">
-                <p class="navButtonText" onclick="displaySection('HomePage'); closeNavigation()">Home</p>
-            </div>            
+            <div id="closeButton" onclick="closeNavigation()">&times;</div>          
             <div class="navigationButton">
                 <p class="navButtonText" onclick="displaySection('week1'); closeNavigation()">Week 1</p>
             </div>            
@@ -182,10 +183,7 @@
                 <p class="navButtonText" onclick="displaySection('week12'); closeNavigation()">Week 12</p>
             </div>
         </div>
-        <div id="HomePage" style="display:none">
-            <img src="./Assets/Austin_Kelly.JPG" />
-        </div>
-        <div id="week1" style="display:none">
+        <div id="week1" style="display:block">
             <h2>Week 1</h2>
             <ul style="list-style: none;">
                 <li>
@@ -204,6 +202,12 @@
                 </li>
                 <li>
                     <a href="week2/notes.html">Notes</a>
+                </li>
+                <li>
+                    <a href="week2/calculator.html">Calculator</a>
+                </li>
+                <li>
+                    <a href="week2/teamActivity.html">Team Activity</a>
                 </li>
             </ul>
         </div>

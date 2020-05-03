@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Week 2 Team Activity</title>
+        <style>
+            #calculator {
+                width: 210px;
+                height: 325px;
+                border: 1px solid #000000;
+                border-radius:4px;
+                padding:20px;
+                background:lightskyblue;
+            }
+            #input {
+                min-height:30px;
+                border: 1px solid #000000;
+                border-radius:4px;
+                background:#FFFFFF;
+                padding-top:10px;
+                padding-right:10px;
+            }
+            button{
+                width:49px;
+                height:49px;
+                text-align:center;
+                cursor: pointer;
+                border-radius:4px;
+                padding: 8px;
+                display: inline-block;
+            }
+            .row {
+                padding-top:8px;
+            }
+        </style>
+
+        <script>
+            let operation = "";
+            let number = null;
+            let secondNumber = null;
+            let selected = false;
+            let pressedEqual = false;
+            function calculate(input) {
+                if (!secondNumber){
+                    secondNumber = parseFloat(input.innerHTML);
+                }
+
+                var fixed = 0;
+                if (number.toString().includes(".")){
+                    fixed += number.toString().slice(number.toString().indexOf(".") + 1).length;
+                }
+
+                if (secondNumber.toString().includes(".")){
+                    if (operation === "+" || operation ==="-") {
+                        if (secondNumber.toString().slice(secondNumber.toString().indexOf(".") + 1).length > fixed) {
+                            fixed = secondNumber.toString().slice(secondNumber.toString().indexOf(".") + 1).length 
+                        }
+                    }else {
+                        fixed += secondNumber.toString().slice(secondNumber.toString().indexOf(".") + 1).length;
+                    }
+                }
+                if(operation === "+") {
+                    number = input.innerHTML = parseFloat((number + secondNumber).toFixed(fixed));
+                } else if(operation === "-") {
+                    number = input.innerHTML = parseFloat((number - secondNumber).toFixed(fixed));
+                } else if (operation === "*") {
+                    number = input.innerHTML = parseFloat(number * secondNumber);
+                } else if (operation === "/") {
+                    number = input.innerHTML = parseFloat(number / secondNumber);
+                }
+
+                if (!isFinite(parseFloat(input.innerHTML))){
+                    input.innerHTML = "ERROR";
+                }
+            }
+
+            function writeToDiv(value) {
+                var input = document.getElementById("input");
+                switch(value) {
+                    case "clear":
+                        input.innerHTML = "";
+                        operation = "";
+                        number = "";
+                        secondNumber = "";
+                        selected = false;
+                        pressedEqual = false;
+                        break;
+                    case "=":
+                        calculate(input);
+                        pressedEqual = true;
+                        break;
+                    case "summation":
+                        var sum = 0;
+                        if (parseFloat(input.innerHTML) > 100000 || parseFloat(input.innerHTML) < -100000 ||
+                            (input.innerHTML.includes(".") && parseFloat(input.innerHTML.slice(input.innerHTML.indexOf("."))) > 0)){
+                            input.innerHTML = "ERROR";
+                        } else if (parseFloat(input.innerHTML) > 0) {
+                            for (var i = 0; i <= parseFloat(input.innerHTML); i++){
+                                sum += i;
+                            }
+                            input.innerHTML = sum.toString();
+                        } else {
+                            for (i = 0; i >= parseFloat(input.innerHTML); i--) {
+                                sum += i;
+                            }
+                            input.innerHTML = sum.toString();
+                        }
+                        break;
+                    case "factorial": 
+                        var total = 1;
+                        if (parseFloat(input.innerHTML) > 100000 || parseFloat(input.innerHTML) < 0 ||
+                            (input.innerHTML.includes(".") && parseFloat(input.innerHTML.slice(input.innerHTML.indexOf("."))) > 0)){
+                            input.innerHTML = "ERROR";
+                        } else {
+                            for (var i = 1; i <= parseFloat(input.innerHTML); i++){
+                                total *= i;
+                            }
+                            if (isFinite(total)){
+                                input.innerHTML = total.toString();
+                            } else {
+                                input.innerHTML = "ERROR";
+                            }
+                        }
+                        break;
+                    case "+/-":
+                        input.innerHTML = parseFloat(input.innerHTML) * -1;
+                        break;
+                    case "+":
+                    case "-":
+                    case "/":
+                    case "*":
+                        if (operation && !pressedEqual){
+                            calculate(input);
+                        }
+                        pressedEqual = false;
+                        number = parseFloat(input.innerHTML);
+                        operation = value;
+                        selected = true;
+                        secondNumber = null;
+                        break;
+                    case ".":
+                        if (input.innerHTML === "ERROR" || selected){
+                            input.innerHTML = 0 + value;
+                            selected = false;
+                        }else if (!input.innerHTML.includes(".")){
+                            input.innerHTML += value;
+                        }
+                        break;
+                    default:
+                        if (input.innerHTML === "ERROR" || selected || 
+                            (parseFloat(input.innerHTML) === 0 && !input.innerHTML.includes("."))){
+                            input.innerHTML = value;
+                            selected = false;
+                        } else if (input.innerHTML.length < 23) {
+                            input.innerHTML += value;
+                        }
+                        break;
+                }
+            }
+        </script>
+        
+    </head>
+    <body>
+        <div id="calculator">
+            <div id="input" align="right"></div>
+            <div class="row">
+                <button onclick="writeToDiv('clear')">C</button>
+                <button onclick="writeToDiv('+/-')">+/-</button>
+                <button onclick="writeToDiv('factorial')">!</button>
+                <button onclick="writeToDiv('summation')">&#8721;</button>
+            </div>
+            <div class="row">
+                <button onclick="writeToDiv('7')">7</button>
+                <button onclick="writeToDiv('8')">8</button>
+                <button onclick="writeToDiv('9')">9</button>
+                <button onclick="writeToDiv('/')">&#247;</button>
+            </div>
+            <div class="row">
+                <button onclick="writeToDiv('4')">4</button>
+                <button onclick="writeToDiv('5')">5</button>
+                <button onclick="writeToDiv('6')">6</button>
+                <button onclick="writeToDiv('*')">&times;</button>
+            </div>
+            <div class="row">
+                <button onclick="writeToDiv('1')">1</button>
+                <button onclick="writeToDiv('2')">2</button>
+                <button onclick="writeToDiv('3')">3</button>
+                <button onclick="writeToDiv('-')">&minus;</button>
+            </div>
+            <div class="row">
+                <button onclick="writeToDiv('0')">0</button>
+                <button onclick="writeToDiv('.')">.</button>
+                <button onclick="writeToDiv('=')">=</button>
+                <button onclick="writeToDiv('+')">+</button>
+            </div>
+        </div>
+    </body>
+</html>
