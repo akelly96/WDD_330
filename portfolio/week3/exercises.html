@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Week 3 Exercises</title>
+    
+        <style>
+            th, td {
+                padding-left:16px;
+            }
+            table, td, th {  
+                border: 1px solid black;
+                text-align: left;
+            }
+            table {
+                border-collapse: collapse;
+                width:50%;
+            }
+            #balloon {
+                margin:0px;
+            }
+
+        </style>
+
+        <script>
+            function startFunctions() {
+                mountain();
+                setBalloon();
+            }
+
+            function mountain() {
+                const MOUNTAINS = [
+                {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+                {name: "Everest", height: 8848, place: "Nepal"},
+                {name: "Mount Fuji", height: 3776, place: "Japan"},
+                {name: "Vaalserberg", height: 323, place: "Netherlands"},
+                {name: "Denali", height: 6168, place: "United States"},
+                {name: "Popocatepetl", height: 5465, place: "Mexico"},
+                {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+                ];
+            
+                let mountainTable = "<table><tr><th>Mountain</th><th>Height</th><th>Location</th></tr>"
+                for (let i = 0; i < MOUNTAINS.length; i++) {
+                        mountainTable += "<tr><td>" + MOUNTAINS[i].name + "</td>" +
+                        "<td>" + MOUNTAINS[i].height + "</td>" + 
+                    "<td>" + MOUNTAINS[i].place + "</td></tr>";
+                }
+                mountainTable += "</table>";
+                document.getElementById("mountains").innerHTML = mountainTable;
+            }
+            let balloon;
+            let size;
+            function setBalloon() {
+                balloon = document.querySelector("#balloon");
+                size = 20;
+                balloon.style.fontSize = size + "px";
+            }
+            function inflate(e) {
+                switch(e.keyCode){
+                case 38:
+                size = size * 1.1
+                    break;
+                case 40:
+                if (size > 20){
+                    size = size * 0.9;
+                }
+                break;
+            }
+            if (size > 70) {
+            balloon.innerHTML = "💥";
+            document.removeEventListener("keydown", inflate);
+            }
+            balloon.style.fontSize = size + "px";
+            }
+            document.addEventListener("keydown", inflate);
+          </script>
+    </head>
+    <body onload="startFunctions()">
+        <h1>Week 3 Exercises</h1>
+        <h3>Chapter 14</h3>
+        <h4>Exercise 1</h4>
+        <div id="mountains"></div>
+        <pre>
+            let mountainTable = "&lt;table&gt;&lt;tr&gt;&lt;th&gt;Mountain&lt;/th&gt;&lt;th&gt;Height&lt;/th&gt;&lt;th&gt;Location&lt;/th&gt;&lt;/tr&gt;"
+            for (let i = 0; i &lt; MOUNTAINS.length; i++) {
+                mountainTable += "&lt;tr&gt;&lt;td&gt;" + MOUNTAINS[i].name + "&lt;/td&gt;" +
+                "&lt;td&gt;" + MOUNTAINS[i].height + "&lt;/td&gt;" + 
+                "&lt;td&gt;" + MOUNTAINS[i].place + "&lt;/td&gt;&lt;/tr&gt;";
+            }
+            mountainTable += "&lt;/table&gt;";
+            document.getElementById("mountains").innerHTML = mountainTable;
+            }
+        </pre>
+        <h3>Chapter 15</h3>
+        <h4>Exercise 1</h4>
+        <p id="balloon">🎈</p>
+        <pre>
+            let balloon = document.querySelector("p");
+            size = 20;
+            balloon.style.fontSize = size + "px";
+            function inflate(e) {
+                 switch(e.keyCode){
+                case 38:
+                  size = size * 1.1
+                    break;
+                case 40:
+                  size = size * 0.9;
+                  break;
+              }
+              if (size &gt; 70) {
+               balloon.innerHTML = "💥";
+               document.removeEventListener("keydown", inflate);
+              }
+              balloon.style.fontSize = size + "px";
+            }
+            document.addEventListener("keydown", inflate);
+        </pre>
+    </body>
+</html>
