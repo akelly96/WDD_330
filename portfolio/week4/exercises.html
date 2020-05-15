@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Week 3 Exercises</title>
+    
+        <style>
+
+        </style>
+
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <h1>Week 4 Exercises</h1>
+        <h2>Chapter 6</h2>
+        <h3>Exercise 1</h3>
+        <pre>
+        class Vec {
+            constructor(x,y){
+                this.x = x;
+                this.y = y;
+            }
+            
+            plus(vec) {
+                return new Vec(this.x + vec.x, this.y + vec.y);
+            }
+            
+            minus(vec) {
+                return new Vec(this.x - vec.x, this.y - vec.y);
+            }
+            
+            get length() {
+                    return Math.sqrt(this.x * this.x + this.y * this.y); 
+            }
+        }
+        </pre>
+        <h3>Exercise 2</h3>
+        <pre>
+        class Group {
+            constructor() {
+                this.array = [];
+            }
+            
+            static from(arg){
+                let group = new Group;
+                for (var i = arg[0]; i &lt= arg[1]; i++) {
+                group.array.push(i); 
+                }
+                return group;
+            }
+            
+            has(number) {
+                if (group.array.indexOf(number) !== -1) {
+                return true;
+                } else {
+                return false;
+                }    
+            }
+            
+            add(number) {
+                if (group.array.indexOf(number) === -1) {
+                group.array.push(number);
+                }
+            }
+            
+            delete(number) {
+                var index = group.array.indexOf(number)
+                if (index !== -1) {
+                group.array.splice(index, 1);
+                }
+            }
+        }
+        </pre>
+    </body>
+</html>

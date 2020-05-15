@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Week 4 Team Activity</title>
+        <style>
+            #topLeft, #topMiddle, #topRight, #middleLeft, #middle, #middleRight, #bottomLeft, #bottomMiddle, #bottomRight {
+                width: 100px;
+                height: 80px;
+                display: inline-block;
+                cursor: pointer;
+                vertical-align:middle;
+                text-align:center;
+                padding-top:20px;
+                font-size:50px;
+                margin: -2px;
+            }
+            #winnerDisplay {
+                font-size:50px;
+                color: green;
+                margin-left:50px;
+                display:inline-block;
+            }
+            #board {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            #topMiddle, #bottomMiddle {
+                border-left: 1px solid #000000;
+                border-right: 1px solid #000000;
+            }
+            #middle {
+                border: 1px solid #000000;
+            }
+            #middleRight, #middleLeft{
+                border-top: 1px solid #000000;
+                border-bottom: 1px solid #000000;
+            }
+            button {
+                margin-left: 98px;
+                margin-top: 20px;
+            }
+        </style>
+
+        <script>
+           let isPlayer1sTurn = true;
+           let moves = 0;
+           let winner = false;
+            function addPiece(event) {
+                if (event.target.innerHTML === "" && !winner){
+                    if (isPlayer1sTurn) {
+                        event.target.innerHTML = "O";
+                    } else {
+                        event.target.innerHTML = "X";
+                    }
+                    moves++;
+                    if (moves >= 5){
+                        verifyWin(event.target.id);
+                    }  
+                    isPlayer1sTurn = !isPlayer1sTurn;
+                }
+            }
+            function verifyWin(section){
+                switch(section){
+                    case "topLeft":
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("topMiddle").innerHTML === "O" &&
+                                document.getElementById("topRight").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("bottomRight").innerHTML === "O") ||
+                                (document.getElementById("middleLeft").innerHTML === "O" &&
+                                document.getElementById("bottomLeft").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("topMiddle").innerHTML === "X" &&
+                                document.getElementById("topRight").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("bottomRight").innerHTML === "X") ||
+                                (document.getElementById("middleLeft").innerHTML === "X" &&
+                                document.getElementById("bottomLeft").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "topMiddle":
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("topLeft").innerHTML === "O" &&
+                                document.getElementById("topRight").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("bottomMiddle").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("topLeft").innerHTML === "X" &&
+                                document.getElementById("topRight").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("bottomMiddle").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "topRight":                        
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("topMiddle").innerHTML === "O" &&
+                                document.getElementById("topLeft").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("bottomLeft").innerHTML === "O") ||
+                                (document.getElementById("middleRight").innerHTML === "O" &&
+                                document.getElementById("bottomRight").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("topMiddle").innerHTML === "X" &&
+                                document.getElementById("topLeft").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("bottomLeft").innerHTML === "X") ||
+                                (document.getElementById("middleRight").innerHTML === "X" &&
+                                document.getElementById("bottomRight").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "middleLeft":
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("topLeft").innerHTML === "O" &&
+                                document.getElementById("bottomLeft").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("middleRight").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("topLeft").innerHTML === "X" &&
+                                document.getElementById("bottomLeft").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("middleRight").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "middle":
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("topMiddle").innerHTML === "O" &&
+                                document.getElementById("bottomMiddle").innerHTML === "O") ||
+                                (document.getElementById("middleLeft").innerHTML === "O" &&
+                                document.getElementById("middleRight").innerHTML === "O") ||
+                                (document.getElementById("topLeft").innerHTML === "O" &&
+                                document.getElementById("bottomRight").innerHTML === "O") ||
+                                (document.getElementById("topRight").innerHTML === "O" &&
+                                document.getElementById("bottomLeft").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("topMiddle").innerHTML === "X" &&
+                                document.getElementById("bottomMiddle").innerHTML === "X") ||
+                                (document.getElementById("middleLeft").innerHTML === "X" &&
+                                document.getElementById("middleRight").innerHTML === "X") ||
+                                (document.getElementById("topLeft").innerHTML === "X" &&
+                                document.getElementById("bottomRight").innerHTML === "X") ||
+                                (document.getElementById("topRight").innerHTML === "X" &&
+                                document.getElementById("bottomLeft").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "middleRight":
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("topRight").innerHTML === "O" &&
+                                document.getElementById("bottomRight").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("middleLeft").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("topRight").innerHTML === "X" &&
+                                document.getElementById("bottomRight").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("middleLeft").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "bottomLeft":
+                    if (isPlayer1sTurn){
+                        if ((document.getElementById("bottomMiddle").innerHTML === "O" &&
+                                document.getElementById("bottomRight").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("topRight").innerHTML === "O") ||
+                                (document.getElementById("middleLeft").innerHTML === "O" &&
+                                document.getElementById("topLeft").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("bottomMiddle").innerHTML === "X" &&
+                                document.getElementById("bottomRight").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("topRight").innerHTML === "X") ||
+                                (document.getElementById("middleLeft").innerHTML === "X" &&
+                                document.getElementById("topLeft").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "bottomMiddle":
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("bottomLeft").innerHTML === "O" &&
+                                document.getElementById("bottomRight").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("topMiddle").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("bottomLeft").innerHTML === "X" &&
+                                document.getElementById("bottomRight").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("topMiddle").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                    case "bottomRight":
+                        if (isPlayer1sTurn){
+                            if ((document.getElementById("bottomMiddle").innerHTML === "O" &&
+                                document.getElementById("bottomLeft").innerHTML === "O") ||
+                                (document.getElementById("middle").innerHTML === "O" &&
+                                document.getElementById("topLeft").innerHTML === "O") ||
+                                (document.getElementById("middleRight").innerHTML === "O" &&
+                                document.getElementById("topRight").innerHTML === "O")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 1 WINS!"
+                            }
+                        } else {
+                            if ((document.getElementById("bottomMiddle").innerHTML === "X" &&
+                                document.getElementById("bottomLeft").innerHTML === "X") ||
+                                (document.getElementById("middle").innerHTML === "X" &&
+                                document.getElementById("topLeft").innerHTML === "X") ||
+                                (document.getElementById("middleRight").innerHTML === "X" &&
+                                document.getElementById("topRight").innerHTML === "X")) {
+                                winner = true;
+                                document.getElementById("winnerDisplay").innerHTML = "PLAYER 2 WINS!"
+                            }
+                        }
+                        break;
+                }
+                if (!winner && moves === 9) {
+                    document.getElementById("winnerDisplay").innerHTML = "DRAW!"
+                }
+            }
+            function setEventListeners() {
+                document.getElementById("topLeft").addEventListener("click", addPiece);
+                document.getElementById("topMiddle").addEventListener("click", addPiece);
+                document.getElementById("topRight").addEventListener("click", addPiece);
+                document.getElementById("middleLeft").addEventListener("click", addPiece);
+                document.getElementById("middle").addEventListener("click", addPiece);
+                document.getElementById("middleRight").addEventListener("click", addPiece);
+                document.getElementById("bottomLeft").addEventListener("click", addPiece);
+                document.getElementById("bottomMiddle").addEventListener("click", addPiece);
+                document.getElementById("bottomRight").addEventListener("click", addPiece);
+                document.getElementById("winnerDisplay").addEventListener("click", addPiece);
+            }
+            function reset() {
+                document.getElementById("topLeft").innerHTML = "";
+                document.getElementById("topMiddle").innerHTML = "";
+                document.getElementById("topRight").innerHTML = "";
+                document.getElementById("middleLeft").innerHTML = "";
+                document.getElementById("middle").innerHTML = "";
+                document.getElementById("middleRight").innerHTML = "";
+                document.getElementById("bottomLeft").innerHTML = "";
+                document.getElementById("bottomMiddle").innerHTML = "";
+                document.getElementById("bottomRight").innerHTML = "";
+                document.getElementById("winnerDisplay").innerHTML = "";
+                isPlayer1sTurn = true;
+                winner = false;
+                moves = 0;
+            }
+        </script>
+    </head>
+    <body onload="setEventListeners()">
+        <h1>Team Activity Week 4</h1>
+        <div id="board">
+            <div>
+                <div id="topLeft"></div>
+                <div id="topMiddle"></div>
+                <div id="topRight"></div>
+            </div>
+            <div>
+                <div id="middleLeft"></div>
+                <div id="middle"></div>
+                <div id="middleRight"></div>
+            </div>
+            <div>
+                <div id="bottomLeft"></div>
+                <div id="bottomMiddle"></div>
+                <div id="bottomRight"></div>
+            </div>
+            <button onclick="reset()">RESET GAME</button>
+        </div>
+        <div id="winnerDisplay"></div>
+    </body>
+</html>
