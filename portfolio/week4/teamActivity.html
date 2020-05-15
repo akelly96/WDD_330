@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Week 4 Team Activity</title>
+        <title>Tic-Tac-Toe</title>
         <style>
             #topLeft, #topMiddle, #topRight, #middleLeft, #middle, #middleRight, #bottomLeft, #bottomMiddle, #bottomRight {
                 width: 100px;
@@ -19,11 +19,9 @@
             #winnerDisplay {
                 font-size:50px;
                 color: green;
-                margin-left:50px;
                 display:inline-block;
             }
             #board {
-                display: inline-block;
                 vertical-align: middle;
             }
             #topMiddle, #bottomMiddle {
@@ -38,8 +36,10 @@
                 border-bottom: 1px solid #000000;
             }
             button {
-                margin-left: 98px;
                 margin-top: 20px;
+            }
+            body {
+                text-align:center;
             }
         </style>
 
@@ -293,7 +293,7 @@
         </script>
     </head>
     <body onload="setEventListeners()">
-        <h1>Team Activity Week 4</h1>
+        <h1>Tic-Tac-Toe</h1>
         <div id="board">
             <div>
                 <div id="topLeft"></div>

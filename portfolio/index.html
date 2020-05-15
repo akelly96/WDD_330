@@ -72,7 +72,7 @@
 
             #sideNavigation div p {
                 cursor: pointer;
-                font: 16px/28px Helvetica;
+                font: 18px/30px Helvetica;
                 display: inline-block;
                 margin-top: 0px;
                 margin-bottom:8px;
@@ -91,17 +91,28 @@
                 margin-left: 50px;
                 cursor:pointer;
             }
+            ul {
+                padding-inline-start: 0px;
+            }
+            li {
+                margin-bottom:8px;
+            }
+            a {
+                font-size:20px;
+            }
 
-            @media screen and (max-width:813px){
+            @media screen and (max-width:828px){
                 body {
                     margin-left: 12px;
-                    text-align: center;
                     margin-right:12px;
                 }
+                #mainSection {
+                    text-align:center;
+                }
             }
-            @media screen and (max-width: 675px) {
-                #hamburger {
-                    margin-top:38px;
+            @media screen and (max-width: 693px) {
+                #headerText {
+                    font-size: 5vw;
                 }
             }
         </style>
@@ -182,74 +193,87 @@
                 <p class="navButtonText" onclick="displaySection('week12'); closeNavigation()">Week 12</p>
             </div>
         </div>
-        <div id="week1" style="display:none">
-            <h2>Week 1</h2>
-            <ul style="list-style: none;">
-                <li>
-                    <a href="week1/notes.html">Notes</a> 
-                </li>
-                <li>
-                    <p>There are no exercises for this week!</p>
-                </li>
-            </ul>
-        </div>
-        <div id="week2" style="display:none">
-            <h2>Week 2</h2>
-            <ul style="list-style: none;">
-                <li>
-                    <a href="week2/exercises.html">Exercises</a> 
-                </li>
-                <li>
-                    <a href="week2/notes.html">Notes</a>
-                </li>
-                <li>
-                    <a href="week2/calculator.html">Calculator</a>
-                </li>
-                <li>
-                    <a href="week2/teamActivity.html">Team Activity</a>
-                </li>
-            </ul>
-        </div>
-        <div id="week3" style="display:none">
-            <h2>Week 3</h2>
-            <ul style="list-style: none;">
-                <li>
-                    <a href="week3/exercises.html">Exercises</a> 
-                </li>
-                <li>
-                    <a href="week3/notes.html">Notes</a>
-                </li>
-                <li>
-                    <a href="week3/teamActivity.html">Team Activity</a>
-                </li>
-            </ul>
-        </div>
-        <div id="week4" style="display:none">
-            <p>Week 4 Placeholder</p>
-        </div>
-        <div id="week5" style="display:none">
-            <p>Week 5 Placeholder</p>
-        </div>
-        <div id="week6" style="display:none">
-            <p>Week 6 Placeholder</p>
-        </div>
-        <div id="week7" style="display:none">
-            <p>Week 7 Placeholder</p>
-        </div>
-        <div id="week8" style="display:none">
-            <p>Week 8 Placeholder</p>
-        </div>
-        <div id="week9" style="display:none">
-            <p>Week 9 Placeholder</p>
-        </div>
-        <div id="week10" style="display:none">
-            <p>Week 10 Placeholder</p>
-        </div>
-        <div id="week11" style="display:none">
-            <p>Week 11 Placeholder</p>
-        </div>
-        <div id="week12" style="display:none">
-            <p>Week 12 Placeholder</p>
+        <div id="mainSection">
+            <div id="week1" style="display:none">
+                <h2>Week 1</h2>
+                <ul style="list-style: none;">
+                    <li>
+                        <a href="week1/notes.html">Notes</a> 
+                    </li>
+                    <li>
+                        <p>There are no exercises for this week!</p>
+                    </li>
+                </ul>
+            </div>
+            <div id="week2" style="display:none">
+                <h2>Week 2</h2>
+                <ul style="list-style: none;">
+                    <li>
+                        <a href="week2/exercises.html">Exercises</a> 
+                    </li>
+                    <li>
+                        <a href="week2/notes.html">Notes</a>
+                    </li>
+                    <li>
+                        <a href="week2/calculator.html">Calculator</a>
+                    </li>
+                    <li>
+                        <a href="week2/teamActivity.html">Team Activity</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="week3" style="display:none">
+                <h2>Week 3</h2>
+                <ul style="list-style: none;">
+                    <li>
+                        <a href="week3/exercises.html">Exercises</a> 
+                    </li>
+                    <li>
+                        <a href="week3/notes.html">Notes</a>
+                    </li>
+                    <li>
+                        <a href="week3/teamActivity.html">Team Activity</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="week4" style="display:none">
+                <h2>Week 4</h2>
+                <ul style="list-style: none;">
+                    <li>
+                        <a href="week4/exercises.html">Exercises</a> 
+                    </li>
+                    <li>
+                        <a href="week4/notes.html">Notes</a>
+                    </li>
+                    <li>
+                        <a href="week4/teamActivity.html">Team Activity</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="week5" style="display:none">
+                <p>Week 5 Placeholder</p>
+            </div>
+            <div id="week6" style="display:none">
+                <p>Week 6 Placeholder</p>
+            </div>
+            <div id="week7" style="display:none">
+                <p>Week 7 Placeholder</p>
+            </div>
+            <div id="week8" style="display:none">
+                <p>Week 8 Placeholder</p>
+            </div>
+            <div id="week9" style="display:none">
+                <p>Week 9 Placeholder</p>
+            </div>
+            <div id="week10" style="display:none">
+                <p>Week 10 Placeholder</p>
+            </div>
+            <div id="week11" style="display:none">
+                <p>Week 11 Placeholder</p>
+            </div>
+            <div id="week12" style="display:none">
+                <p>Week 12 Placeholder</p>
+            </div>
         </div>
     </body>
 </html>

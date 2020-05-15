@@ -20,7 +20,11 @@
             #balloon {
                 margin:0px;
             }
-
+            @media screen and (max-width: 693px) {
+                pre {
+                    font-size: 2.5vw;
+                }
+            }
         </style>
 
         <script>
@@ -40,7 +44,8 @@
                 {name: "Mont Blanc", height: 4808, place: "Italy/France"}
                 ];
             
-                let mountainTable = "<table><tr><th>Mountain</th><th>Height</th><th>Location</th></tr>"
+                let mountainTable = "<table><tr><th>Mountain</th>" +
+                                    "<th>Height</th><th>Location</th></tr>"
                 for (let i = 0; i < MOUNTAINS.length; i++) {
                         mountainTable += "<tr><td>" + MOUNTAINS[i].name + "</td>" +
                         "<td>" + MOUNTAINS[i].height + "</td>" + 
@@ -82,39 +87,50 @@
         <h4>Exercise 1</h4>
         <div id="mountains"></div>
         <pre>
-            let mountainTable = "&lt;table&gt;&lt;tr&gt;&lt;th&gt;Mountain&lt;/th&gt;&lt;th&gt;Height&lt;/th&gt;&lt;th&gt;Location&lt;/th&gt;&lt;/tr&gt;"
-            for (let i = 0; i &lt; MOUNTAINS.length; i++) {
-                mountainTable += "&lt;tr&gt;&lt;td&gt;" + MOUNTAINS[i].name + "&lt;/td&gt;" +
-                "&lt;td&gt;" + MOUNTAINS[i].height + "&lt;/td&gt;" + 
-                "&lt;td&gt;" + MOUNTAINS[i].place + "&lt;/td&gt;&lt;/tr&gt;";
-            }
-            mountainTable += "&lt;/table&gt;";
-            document.getElementById("mountains").innerHTML = mountainTable;
-            }
+let mountainTable = "&lt;table&gt;&lt;tr&gt
+                    ;&lt;th&gt;Mountain&lt;/th&gt;
+                    &lt;th&gt;Height&lt;/th&gt;
+                    &lt;th&gt;Location&lt;/th&gt
+                    ;&lt;/tr&gt;"
+for (let i = 0; i &lt; MOUNTAINS.length; i++) {
+    mountainTable += "&lt;tr&gt;&lt;td&gt;" 
+                    + MOUNTAINS[i].name 
+                    + "&lt;/td&gt;" 
+                    +
+                    "&lt;td&gt;" 
+                    + MOUNTAINS[i].height 
+                    + "&lt;/td&gt;" 
+                    + "&lt;td&gt;" 
+                    + MOUNTAINS[i].place 
+                    + "&lt;/td&gt;&lt;/tr&gt;";
+}
+mountainTable += "&lt;/table&gt;";
+document.getElementById("mountains").innerHTML = mountainTable;
+}
         </pre>
         <h3>Chapter 15</h3>
         <h4>Exercise 1</h4>
         <p id="balloon">🎈</p>
         <pre>
-            let balloon = document.querySelector("p");
-            size = 20;
-            balloon.style.fontSize = size + "px";
-            function inflate(e) {
-                 switch(e.keyCode){
-                case 38:
-                  size = size * 1.1
-                    break;
-                case 40:
-                  size = size * 0.9;
-                  break;
-              }
-              if (size &gt; 70) {
-               balloon.innerHTML = "💥";
-               document.removeEventListener("keydown", inflate);
-              }
-              balloon.style.fontSize = size + "px";
-            }
-            document.addEventListener("keydown", inflate);
+let balloon = document.querySelector("p");
+size = 20;
+balloon.style.fontSize = size + "px";
+function inflate(e) {
+        switch(e.keyCode){
+    case 38:
+        size = size * 1.1
+        break;
+    case 40:
+        size = size * 0.9;
+        break;
+    }
+    if (size &gt; 70) {
+    balloon.innerHTML = "💥";
+    document.removeEventListener("keydown", inflate);
+    }
+    balloon.style.fontSize = size + "px";
+}
+document.addEventListener("keydown", inflate);
         </pre>
     </body>
 </html>
