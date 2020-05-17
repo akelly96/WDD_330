@@ -139,12 +139,11 @@ hr {
 
 .x {
     color:red;
-    position:relative;
-    margin-top:-41px;
-    margin-left:-43px;
+    margin-top:-5px;
+    margin-left:-6.5px;
     margin-bottom:0px;
-    line-height:100px;
-    width:100px;
+    line-height:28px;
+    width:28px;
 }
 .sectionHeader {
     background-color:#D2D2FF;
@@ -153,8 +152,8 @@ hr {
     margin-top:9px;
     margin-bottom:8px;
 }
-@media screen and (max-width: 351px){
-    #addTask, #list {
+@media screen and (max-width: 400px){
+    #addTask, #list, #listFilter {
         width: 100%;
     }
     #taskInput, .task {
@@ -163,5 +162,13 @@ hr {
     .deleteButton{
         float:right;
         margin-right:8px;
+    }
+    
+    .x {
+        margin-top:-12px;
+        margin-left:-13px;
+        margin-bottom:0px;
+        line-height:40px;
+        width:40px;
     }
 }
