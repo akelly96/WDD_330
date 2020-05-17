@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>To Do List</title>
+        <link rel="stylesheet" type="text/css" href="todo.css">
+        <script src="todo.js"></script>
+    </head>
+    <body onload="initialLoad()">
+        <div id="list">
+            <h3>TODO List</h3>
+            <hr>
+        </div>
+        <div id="listFilter">
+            <div class="filterButton" id="left" onclick="load('all', true)"><p class="filterButtonText">ALL</p></div>
+            <div class="filterButton" onclick="load('active', true)"><p class="filterButtonText">ACTIVE</p></div>
+            <div class="filterButton" id="right" onclick="load('complete', true)"><p class="filterButtonText">COMPLETE</p></div>
+        </div>
+        <div id="addTask" onclick="setFocus()">
+            <input type="text" id="taskInput" placeholder="Enter A Task" />
+            <div onclick="addTask()" id="addTaskButton"><p id="addTaskText">ADD TASK</p></div>
+        </div>
+    </body>
+</html>
