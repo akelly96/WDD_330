@@ -60,6 +60,7 @@ function loadCompleteTasks() {
 }
 
 function checkBox() {
+    console.log(event.target.nodeName)
     if (event.target.nodeName === "P"){
         let index = completeTasks.indexOf(event.target.parentElement.parentElement.querySelector(".task").innerHTML);
         event.target.parentElement.innerHTML = ""
@@ -92,6 +93,7 @@ function deleteTask() {
 function setFocus() {
     document.getElementById('taskInput').focus();
 }
+
 function initialLoad() {
     document.getElementById("taskInput").addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
@@ -101,7 +103,6 @@ function initialLoad() {
     });
     load("all", true);
     section = "all";
-    setFocus();
 }
 function load(sections, isFilterButton) {
     document.getElementById("list").innerHTML = 

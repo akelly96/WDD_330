@@ -88,14 +88,14 @@ hr {
 }
 .checkbox, .deleteButton {
     cursor:pointer;
-    height:15px;
     width:15px;
+    height:15px;
     border-radius:4px;
     border:1px solid #000000;
     display:inline-block;
     vertical-align:middle;
     text-align:center;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .task {
@@ -128,7 +128,7 @@ hr {
 }
 
 .deleteButton:after {
-    content: "×";
+    content: "\00D7";
     position: absolute;
     color: white;
     margin-top:-8px;
@@ -138,11 +138,13 @@ hr {
 }
 
 .x {
-    margin:0px;
-    height:15px;
-    margin-top:-5.5px;
-    font-size:25px;
     color:red;
+    position:relative;
+    margin-top:-1.5px;
+    margin-left:-2px;
+    margin-bottom:0px;
+    line-height:19px;
+    width:19px;
 }
 .sectionHeader {
     background-color:#D2D2FF;

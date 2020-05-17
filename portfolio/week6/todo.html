@@ -19,7 +19,7 @@
         </div>
         <div id="addTask" onclick="setFocus()">
             <input type="text" id="taskInput" placeholder="Enter A Task" />
-            <div onclick="addTask()" id="addTaskButton"><p id="addTaskText">ADD TASK</p></div>
+            <div onclick="event.stopPropagation(); addTask()" id="addTaskButton"><p id="addTaskText">ADD TASK</p></div>
         </div>
     </body>
 </html>
