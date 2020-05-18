@@ -1,5 +1,5 @@
 let selected;
-let section = "";
+let sectionToLoad = "";
 let activeTasks = [];
 let completeTasks = [];
 if (localStorage.getItem("activeTasks")){
@@ -12,69 +12,62 @@ function addTask() {
     let task = document.getElementById("taskInput");
     if (task.value != ""){
         activeTasks.push(task.value.replace(/\s+/g,' ').trim());
-        load(section, false);
+        load(sectionToLoad, false);
     }
     task.value = "";
     localStorage.setItem("activeTasks", JSON.stringify(activeTasks));
 }
 function loadActiveTasks(){
-    let activeHeader = document.createElement("div");
-    activeHeader.innerHTML = "<h5 class='sectionHeader'>ACTIVE TASKS<h5><hr>"
-    document.getElementById("list").appendChild(activeHeader);
+    let activeSection = document.createElement("div");
+    activeSection.id = "activeClass";
+    activeSection.innerHTML = "<h5 class='sectionHeader'>ACTIVE TASKS<h5><hr>"
     if (activeTasks.length > 0) {
         for (activeTask of activeTasks){
-            var newTask = document.createElement('div');
-            newTask.className = "tasks";
-            newTask.innerHTML = "<div class=checkbox onclick='checkBox(event)'>" +
+            activeSection.innerHTML += "<div class='tasks'><div class=activeCheckbox onclick='checkBox(event)'>" +
                                     "</div><p class='task'>" + 
                                     activeTask + 
-                                    "</p><div class='deleteButton' onclick='deleteTask()'></div>";
-            document.getElementById("list").appendChild(newTask);
+                                    "</p><div class='deleteButton' onclick='deleteTask()'></div></div>";
         }
     } else {
-        let none = document.createElement("div");
-        none.innerHTML = "<p class='none'>No Active Tasks</p>"
-        document.getElementById("list").appendChild(none)
+        activeSection.innerHTML += "<p class='none'>No Active Tasks</p>";
     }
+    document.getElementById("list").appendChild(activeSection)
 }
 function loadCompleteTasks() {
-    let completeHeader = document.createElement("div");
-    completeHeader.innerHTML = "<h5 class='sectionHeader'>COMPLETED TASKS</h5><hr>"
-    document.getElementById("list").appendChild(completeHeader);
+    let completeSection = document.createElement("div");
+    completeSection.id = "completeClass";
+    completeSection.innerHTML = "<h5 class='sectionHeader'>COMPLETED TASKS</h5><hr>"
+    document.getElementById("list").appendChild(completeSection);
     if (completeTasks.length > 0){
         for (completeTask of completeTasks){
-            var newTask = document.createElement('div');
-            newTask.className = "tasks";
-            newTask.innerHTML = "<div class=checkbox onclick='checkBox()'>" +
-                                    "<p class='x'>&times;</p></div><p class='task'" +
+            completeSection.innerHTML += "<div class='tasks'><div class=completeCheckbox onclick='checkBox()'>" +
+                                    "</div><p class='task'" +
                                     " style='text-decoration:line-through'>" + 
                                     completeTask + 
-                                    "</p><div class='deleteButton' onclick='deleteTask()'></div>";
-            document.getElementById("list").appendChild(newTask);
+                                    "</p><div class='deleteButton' onclick='deleteTask()'></div></div>";
         }
     } else {
-        let none = document.createElement("div");
-        none.innerHTML = "<p class='none'>No Completed Tasks</p>"
-        document.getElementById("list").appendChild(none)
+        completeSection.innerHTML += "<p class='none'>No Completed Tasks</p>";
     }
+    document.getElementById("list").appendChild(completeSection);
 }
 
 function checkBox() {
-    console.log(event.target.nodeName)
-    if (event.target.nodeName === "P"){
-        let index = completeTasks.indexOf(event.target.parentElement.parentElement.querySelector(".task").innerHTML);
-        event.target.parentElement.innerHTML = ""
-        activeTasks.push(completeTasks[index]);
-        completeTasks.splice(index, 1);
-    } else {
+    console.log(event.target.parentElement.parentElement);
+    let section = event.target.parentElement.parentElement;
+    console.log(section.id);
+    if (section.id == "activeClass") {
         let index = activeTasks.indexOf(event.target.parentElement.querySelector(".task").innerHTML);
-        event.target.innerHTML = "<p class='x'>&times;</p>"
         completeTasks.push(activeTasks[index]);
         activeTasks.splice(index, 1);
+    } else {
+        let index = completeTasks.indexOf(event.target.parentElement.querySelector(".task").innerHTML);
+        activeTasks.push(completeTasks[index]);
+        completeTasks.splice(index, 1);
     }
     localStorage.setItem("activeTasks", JSON.stringify(activeTasks));
     localStorage.setItem("completeTasks", JSON.stringify(completeTasks));
-    load(section, false);
+    load(sectionToLoad, false);
 }
 
 function deleteTask() {
@@ -87,7 +80,7 @@ function deleteTask() {
     }
     localStorage.setItem("activeTasks", JSON.stringify(activeTasks));
     localStorage.setItem("completeTasks", JSON.stringify(completeTasks));
-    load(section, false);
+    load(sectionToLoad, false);
 }
 
 function setFocus() {
@@ -102,18 +95,18 @@ function initialLoad() {
         }
     });
     load("all", true);
-    section = "all";
+    sectionToLoad = "all";
 }
 function load(sections, isFilterButton) {
     document.getElementById("list").innerHTML = 
     "<div id='listHeader'><h3>To Do List</h3><h5>Remaining Tasks: " +
     activeTasks.length +"</h5></div><hr>";
-    section = sections
-    if (sections === "all"){
+    sectionToLoad = sections
+    if (sectionToLoad === "all"){
         loadActiveTasks();
         document.getElementById("list").appendChild(document.createElement("hr"));
         loadCompleteTasks();
-    } else if (sections === "active") {
+    } else if (sectionToLoad === "active") {
         loadActiveTasks();
     } else {
         loadCompleteTasks();

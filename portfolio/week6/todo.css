@@ -86,7 +86,7 @@ hr {
 #right {
     border-bottom-right-radius:4px;
 }
-.checkbox, .deleteButton {
+.completeCheckbox, .deleteButton, .activeCheckbox {
     cursor:pointer;
     width:15px;
     height:15px;
@@ -115,7 +115,7 @@ hr {
     text-align:left;
 }
 
-.checkbox {
+.completeCheckbox, .activeCheckbox {
     margin-left: 8px;
     margin-right:8px;
 }
@@ -137,13 +137,13 @@ hr {
     font-size:28px;
 }
 
-.x {
+.completeCheckbox:after {
+    content: "\00D7";
     color:red;
-    margin-top:-5px;
-    margin-left:-6.5px;
-    margin-bottom:0px;
-    line-height:28px;
-    width:28px;
+    position: absolute;
+    margin-top:-6.5px;
+    margin-left:-7.5px;
+    
 }
 .sectionHeader {
     background-color:#D2D2FF;
