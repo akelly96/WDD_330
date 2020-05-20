@@ -84,13 +84,13 @@ const hikeList = [
     parent.innerHTML = "";
     hikes.forEach(hike => {
         let newHike = document.createElement("div");
-        newHike.id = hike.name;
         newHike = renderOneHikeLight(hike);
         parent.appendChild(newHike);
     });
   }
   function renderOneHikeLight(hike) {
     const item = document.createElement("li");
+    item.id = hike.name;
     item.innerHTML = `<h2>${hike.name}</h2>
     <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
     <div>
