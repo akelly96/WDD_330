@@ -71,9 +71,7 @@ const hikeList = [
     }
     buildBackButton() {
         const backButton = document.createElement("button");
-        backButton.onclick = function() {
-            this.showHikeList();
-        }
+        backButton.onclick = this.showHikeList();
         backButton.innerHTML = "BACK";
         return backButton;
     }
