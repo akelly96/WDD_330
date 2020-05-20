@@ -62,7 +62,7 @@ const hikeList = [
     addHikeListener() {
         let hikes = this.getAllHikes();
         hikes.forEach(hike => {
-            document.getElementById(hike.name).addEventListener(click, () => {
+            document.getElementById(hike.name).addEventListener("click", () => {
                 this.parent.innerHTML = "";
                 this.parent.append(showOneHike(hike));
                 this.parent.append(this.backButton);
@@ -85,7 +85,7 @@ const hikeList = [
     hikes.forEach(hike => {
         let newHike = document.createElement("div");
         newHike.id = hike.name;
-        newHike.innerHTML = renderOneHikeLight(hike);
+        newHike = renderOneHikeLight(hike);
         parent.appendChild(newHike);
     });
   }
