@@ -32,3 +32,7 @@ body {
       text-align:center;
       height:40px;
   }
+  button {
+      float: left;
+      margin-left: 10px;
+  }

@@ -54,8 +54,8 @@ const hikeList = [
         this.addHikeListener();
     }
     // show one hike with full details in the parentElement
-    showOneHike(hike) {
-        this.parent.appendChild(renderOneHikeFull(hike));
+    showOneHike(hike, backbutton) {
+        this.parent.appendChild(renderOneHikeFull(hike, backbutton));
     }
     // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
     addHikeListener() {
@@ -63,8 +63,7 @@ const hikeList = [
         hikes.forEach(hike => {
             document.getElementById(hike.name).addEventListener("click", () => {
                 this.parent.innerHTML = "";
-                this.showOneHike(hike);
-                this.parent.appendChild(this.backButton);
+                this.showOneHike(hike, this.backbutton);
             });
         });
       // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
@@ -105,9 +104,9 @@ const hikeList = [
     </div>`;
     return item;
   }
-  function renderOneHikeFull(hike) {
+  function renderOneHikeFull(hike, backbutton) {
     const item = document.createElement("div");
-    item.innerHTML = `<h2>${hike.name}</h2>
+    item.innerHTML = `<h2>${backbutton}${hike.name}</h2>
     <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
     <div class="section">
             <div>
