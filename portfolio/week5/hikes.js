@@ -50,7 +50,7 @@ const hikeList = [
     }
     //show a list of hikes in the parentElement
     showHikeList() {
-        renderHikeList(this.parentElement, this.getAllHikes());
+        renderHikeList(parentElement, this.getAllHikes());
     }
     // show one hike with full details in the parentElement
     showOneHike(hike) {
@@ -61,9 +61,9 @@ const hikeList = [
         let hikes = this.getAllHikes();
         hikes.forEach(hike => {
             document.getElementById(hike.name).addEventListener(click, () => {
-                this.parentElement.innerHTML = "";
-                this.parentElement.append(showOneHike(hike));
-                this.parentElement.append(buildBackButton());
+                parentElement.innerHTML = "";
+                parentElement.append(showOneHike(hike));
+                parentElement.append(backButton);
             });
         });
       // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
@@ -79,7 +79,7 @@ const hikeList = [
   }
   // methods responsible for building HTML.  Why aren't these in the class?  They don't really need to be, and by moving them outside of the exported class, they cannot be called outside the module...they become private.
   function renderHikeList(parent, hikes) {
-    this.parentElement.innerHTML = "";
+    parent.innerHTML = "";
     let unorderedList = document.createElement("ul");
     hikes.forEach(hike => {
         let newHike = document.createElement("div");
@@ -87,7 +87,7 @@ const hikeList = [
         newHike.innerHTML = renderOneHikeLight(hike)
         unorderedList.appendChild(newHike);
     });
-    this.parentElement.appendChild(unorderedList);
+    parent.appendChild(unorderedList);
   }
   function renderOneHikeLight(hike) {
     const item = document.createElement("li");
