@@ -37,7 +37,6 @@ const hikeList = [
   export default class Hikes {
     constructor(elementId) {
       this.parent = document.getElementById(elementId);
-      console.log(this.parent);
       // we need a back button to return back to the list. This will build it and hide it. When we need it we just need to remove the 'hidden' class
       this.backButton = this.buildBackButton();
     }
