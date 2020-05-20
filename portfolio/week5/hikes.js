@@ -92,7 +92,7 @@ const hikeList = [
     item.id = hike.name;
     item.innerHTML = `<h2>${hike.name}</h2>
     <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
-    <div>
+    <div class="section">
             <div>
                 <h3>Distance</h3>
                 <p>${hike.distance}</p>
@@ -108,7 +108,7 @@ const hikeList = [
     const item = document.createElement("div");
     item.innerHTML = `<h2>${hike.name}</h2>
     <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
-    <div>
+    <div class="section">
             <div>
                 <h3>Distance</h3>
                 <p>${hike.distance}</p>
