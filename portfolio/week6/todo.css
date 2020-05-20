@@ -78,6 +78,8 @@ hr {
     width:32.5%;
     height:100%;
     text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
 }
 
 #left {

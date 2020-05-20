@@ -20,16 +20,18 @@ function addTask() {
 function loadActiveTasks(){
     let activeSection = document.createElement("div");
     activeSection.id = "activeClass";
-    activeSection.innerHTML = "<h5 class='sectionHeader'>ACTIVE TASKS<h5><hr>"
+    activeSection.innerHTML = `<h5 class="sectionHeader">ACTIVE TASKS<h5><hr>`
     if (activeTasks.length > 0) {
         for (activeTask of activeTasks){
-            activeSection.innerHTML += "<div class='tasks'><div class=activeCheckbox onclick='checkBox(event)'>" +
-                                    "</div><p class='task'>" + 
-                                    activeTask + 
-                                    "</p><div class='deleteButton' onclick='deleteTask()'></div></div>";
+            activeSection.innerHTML += `
+            <div class="tasks">
+                <div class=activeCheckbox onclick="checkBox(event)"></div>
+                <p class="task">${activeTask}</p>
+                <div class="deleteButton" onclick="deleteTask()"></div>
+            </div>`;
         }
     } else {
-        activeSection.innerHTML += "<p class='none'>No Active Tasks</p>";
+        activeSection.innerHTML += `<p class="none">No Active Tasks</p>`;
     }
     document.getElementById("list").appendChild(activeSection)
 }
@@ -40,14 +42,15 @@ function loadCompleteTasks() {
     document.getElementById("list").appendChild(completeSection);
     if (completeTasks.length > 0){
         for (completeTask of completeTasks){
-            completeSection.innerHTML += "<div class='tasks'><div class=completeCheckbox onclick='checkBox()'>" +
-                                    "</div><p class='task'" +
-                                    " style='text-decoration:line-through'>" + 
-                                    completeTask + 
-                                    "</p><div class='deleteButton' onclick='deleteTask()'></div></div>";
+            completeSection.innerHTML += `
+            <div class="tasks">
+                <div class=completeCheckbox onclick="checkBox()"></div>
+                <p class="task" style="text-decoration:line-through">${completeTask}</p>
+                <div class="deleteButton" onclick="deleteTask()"></div>
+            </div>`;
         }
     } else {
-        completeSection.innerHTML += "<p class='none'>No Completed Tasks</p>";
+        completeSection.innerHTML += `<p class="none">No Completed Tasks</p>`;
     }
     document.getElementById("list").appendChild(completeSection);
 }
@@ -99,8 +102,11 @@ function initialLoad() {
 }
 function load(sections, isFilterButton) {
     document.getElementById("list").innerHTML = 
-    "<div id='listHeader'><h3>To Do List</h3><h5>Remaining Tasks: " +
-    activeTasks.length +"</h5></div><hr>";
+    `<div id='listHeader'>
+        <h3>To Do List</h3>
+        <h5>Remaining Tasks: ${activeTasks.length}</h5>
+    </div>
+    <hr>`;
     sectionToLoad = sections
     if (sectionToLoad === "all"){
         loadActiveTasks();
