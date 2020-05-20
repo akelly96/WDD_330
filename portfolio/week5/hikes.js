@@ -73,7 +73,7 @@ const hikeList = [
     buildBackButton() {
         const backButton = document.createElement("button");
         backButton.onclick = function() {
-            showHikeList();
+            this.showHikeList();
         }
         backButton.innerHTML = "BACK";
         return backButton;
@@ -89,7 +89,7 @@ const hikeList = [
     });
   }
   function renderOneHikeLight(hike) {
-    const item = document.createElement("li");
+    const item = document.createElement("div");
     item.id = hike.name;
     item.innerHTML = `<h2>${hike.name}</h2>
     <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
@@ -106,7 +106,7 @@ const hikeList = [
     return item;
   }
   function renderOneHikeFull(hike) {
-    const item = document.createElement("li");
+    const item = document.createElement("div");
     item.innerHTML = `<h2>${hike.name}</h2>
     <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
     <div>

@@ -4,22 +4,27 @@
         <meta charset="utf-8">
         <title>Great Hikes (dynamic DOM example)</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-          body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-              Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-          }
-          img {
-            max-width: 100%;
-          }
-        </style>
+        <link rel="stylesheet" href="teamActivityStyles.css">
       </head>
     <body>
         <main>
             <h1>Great hikes</h1>
-            <ul id="hikes" class="hikeStyles"></ul>
+            <div id="hikes" class="hikeStyles">
+                <div>
+                    <h2>Name</h2>
+                    <div class="image"><img src="falls.jpg" alt="something"></div>
+                    <div class="section">
+                            <div>
+                                <h3>Distance</h3>
+                                <p>1 mile</p>
+                            </div>
+                            <div>
+                                <h3>Difficulty</h3>
+                                <p>Easy peasy lemon squeezy this is a really really long difficulty level so that i can test this</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <script type="module" src="main.js"></script>
     </body>
