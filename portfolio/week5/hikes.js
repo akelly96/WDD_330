@@ -82,14 +82,12 @@ const hikeList = [
   // methods responsible for building HTML.  Why aren't these in the class?  They don't really need to be, and by moving them outside of the exported class, they cannot be called outside the module...they become private.
   function renderHikeList(parent, hikes) {
     parent.innerHTML = "";
-    let unorderedList = document.createElement("ul");
     hikes.forEach(hike => {
         let newHike = document.createElement("div");
         newHike.id = hike.name;
-        newHike.innerHTML = renderOneHikeLight(hike)
-        unorderedList.appendChild(newHike);
+        newHike.innerHTML = renderOneHikeLight(hike);
+        parent.appendChild(newHike);
     });
-    parent.appendChild(unorderedList);
   }
   function renderOneHikeLight(hike) {
     const item = document.createElement("li");
@@ -108,6 +106,7 @@ const hikeList = [
     return item;
   }
   function renderOneHikeFull(hike) {
+    const item = document.createElement("li");
     item.innerHTML = `<h2>${hike.name}</h2>
     <div class="image"><img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}"></div>
     <div>
