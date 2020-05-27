@@ -112,9 +112,9 @@ hr {
 }
 
 .tasks{
-    padding-top:8px;
-    padding-bottom:8px;
     text-align:left;
+    padding-top:9px;
+    padding-bottom: 9px;
 }
 
 .completeCheckbox, .activeCheckbox {
@@ -143,16 +143,20 @@ hr {
     content: "\00D7";
     color:red;
     position: absolute;
-    margin-top:-6.5px;
+    margin-top:-6px;
     margin-left:-7.5px;
     
 }
 .sectionHeader {
     background-color:#D2D2FF;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width:100%;
 }
 .none {
-    margin-top:9px;
-    margin-bottom:8px;
+    padding-top:9.71px;
+    margin:0px;
+    padding-bottom: 9.71px;
 }
 @media screen and (max-width: 400px){
     #addTask, #list, #listFilter {

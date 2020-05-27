@@ -20,7 +20,7 @@ function addTask() {
 function loadActiveTasks(){
     let activeSection = document.createElement("div");
     activeSection.id = "activeClass";
-    activeSection.innerHTML = `<h5 class="sectionHeader">ACTIVE TASKS<h5><hr>`
+    activeSection.innerHTML = `<h5 class="sectionHeader">ACTIVE TASKS<h5>`
     if (activeTasks.length > 0) {
         for (activeTask of activeTasks){
             activeSection.innerHTML += `
@@ -38,7 +38,7 @@ function loadActiveTasks(){
 function loadCompleteTasks() {
     let completeSection = document.createElement("div");
     completeSection.id = "completeClass";
-    completeSection.innerHTML = "<h5 class='sectionHeader'>COMPLETED TASKS</h5><hr>"
+    completeSection.innerHTML = "<h5 class='sectionHeader'>COMPLETED TASKS</h5>"
     document.getElementById("list").appendChild(completeSection);
     if (completeTasks.length > 0){
         for (completeTask of completeTasks){
@@ -105,12 +105,10 @@ function load(sections, isFilterButton) {
     `<div id='listHeader'>
         <h3>To Do List</h3>
         <h5>Remaining Tasks: ${activeTasks.length}</h5>
-    </div>
-    <hr>`;
+    </div>`;
     sectionToLoad = sections
     if (sectionToLoad === "all"){
         loadActiveTasks();
-        document.getElementById("list").appendChild(document.createElement("hr"));
         loadCompleteTasks();
     } else if (sectionToLoad === "active") {
         loadActiveTasks();
