@@ -56,9 +56,7 @@ function loadCompleteTasks() {
 }
 
 function checkBox() {
-    console.log(event.target.parentElement.parentElement);
     let section = event.target.parentElement.parentElement;
-    console.log(section.id);
     if (section.id == "activeClass") {
         let index = activeTasks.indexOf(event.target.parentElement.querySelector(".task").innerHTML);
         completeTasks.push(activeTasks[index]);
