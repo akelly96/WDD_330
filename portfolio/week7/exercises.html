@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Week 7 Exercises</title>
+    
+        <style>
+            pre {
+                white-space: pre-wrap;
+            }
+        </style>
+
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <h1>Week 7 Exercises</h1>
+        <h2>Chapter 5</h2>
+        <h3>Exercise 1</h3>
+        <pre>
+let arrays = [[1, 2, 3], [4, 5], [6]];
+console.log(arrays.reduce((a,b) =&gt; a.concat(b)));
+Output: [1, 2, 3, 4, 5, 6]
+        </pre>
+        <h3>Exercise 2</h3>
+        <pre>
+function loop(value, test, update, body) {
+    if (test(value)) {
+        body(value);
+        value = update(value);
+        loop(value, test, update, body);
+    }
+}
+    
+loop(3, n =&gt; n &gt; 0, n =&gt; n - 1, console.log);
+Output: 
+3
+2
+1
+        </pre>
+    </body>
+</html>
