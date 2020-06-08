@@ -33,10 +33,12 @@
   
     buildform() {
         const form = document.createElement("div");
+        form.id = "form";
         let commentSection = document.createElement("textarea");
         commentSection.id = "commentSection";
-        form.appendChild(commentSection)
-        const submitButton = document.createElement("button")
+        form.appendChild(commentSection);
+        const submitButton = document.createElement("button");
+        submitButton.id = "submitButton";
         submitButton.addEventListener("click", () => {
           if (commentSection.value != ""){
               var today = new Date();
@@ -77,9 +79,9 @@
   }
   function renderOneHikeCommentList(comments) {
     const item = document.createElement("div");
+    item.className = "comments";
     item.innerHTML = `
-    <p>${comments.name}</p>
-    <p>${comments.date}</p>
+    <p>${comments.name}: ${comments.date}</p>
     <p>${comments.comment}</p>`;
     return item;
   }

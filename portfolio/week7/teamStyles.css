@@ -38,3 +38,16 @@ body {
     margin-top: 10px;
     margin-right: -100px;
   }
+  .comments, #form {
+    margin-left: 20px;
+  }
+  #commentSection {
+    min-width: 280px;
+    min-height:130px;
+    padding: 20px;
+  }
+  #submitButton {
+    display:block;
+    margin-bottom:20px;
+    margin-top:10px;
+  }
