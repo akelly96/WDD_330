@@ -1,0 +1,16 @@
+h1, #movies, h3, #characterInfo {
+    text-align:center;
+}
+button {
+    text-align:left
+}
+.characters, .movieTitles {
+    background:lightseagreen;
+    cursor:pointer;
+    display:inline-block;
+    margin:20px;
+}
+
+.characters p, .movieTitles p {
+    margin:5px;
+}
