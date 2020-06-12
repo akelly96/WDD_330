@@ -1,9 +1,11 @@
 let api = "https://swapi.dev/api/films";
 fetch(api)
 .then( function(response) {
+    console.log("test1")
     if(response.ok) {
         return response;
     }
+    console.log("test2")
     throw Error(response.statusText);
 })
 .then(response => response.json())
