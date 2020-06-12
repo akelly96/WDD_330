@@ -49,6 +49,7 @@ function getCharacters(characters, title) {
     characterList.appendChild(heading);
     characterList.appendChild(subHeading);
     characters.forEach(character => {
+        character = character.replace(/http/g, "https");
         fetch(character)
         .then( function(response) {
             if(response.ok) {
