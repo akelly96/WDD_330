@@ -8,6 +8,7 @@ fetch(api)
 })
 .then(response => response.json())
 .then(function(data) {
+    console.log("test")
     let movies = document.createElement("div");
     movies.id = "movies";
     let heading = document.createElement("h1");
