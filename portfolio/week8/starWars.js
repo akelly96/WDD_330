@@ -1,16 +1,13 @@
 let api = "https://swapi.dev/api/films";
 fetch(api)
 .then( function(response) {
-    console.log("test1")
     if(response.ok) {
         return response;
     }
-    console.log("test2")
     throw Error(response.statusText);
 })
 .then(response => response.json())
 .then(function(data) {
-    console.log("test")
     let movies = document.createElement("div");
     movies.id = "movies";
     let heading = document.createElement("h1");
@@ -52,7 +49,6 @@ function getCharacters(characters, title) {
     characterList.appendChild(heading);
     characterList.appendChild(subHeading);
     characters.forEach(character => {
-        character = character.replace(/http/g, "https");
         fetch(character)
         .then( function(response) {
             if(response.ok) {
