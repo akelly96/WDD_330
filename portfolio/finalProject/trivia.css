@@ -1,0 +1,99 @@
+#nav {
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align:center;
+    padding:10px;
+    margin:0px;
+}
+
+body {
+    margin: 0px;
+    text-align:center;
+    font-family: Roboto;
+}
+
+.button {
+    border: 1px solid black;
+    border-radius: 4px;
+    display: inline-block;
+    padding:5px;
+    margin: 5px;
+    background: #228b22;
+    color: white;
+}
+
+.button p {
+    margin: 0px;
+}
+
+.button:hover, .answers:hover {
+    cursor: pointer;
+}
+
+.button:hover {
+    background:#2cb32c;
+}
+
+.answers:hover {
+    background: #b9b9ff
+}
+
+#triviaQuestions {
+    text-align:center;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 350px;
+    display: none;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.answers, #question, .selected, .correct, .incorrect, .answered {
+    padding:10px;
+    border-bottom: 1px solid black;
+}
+
+#question {
+    font-size: 18px;
+    background:#FFFFD2;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.correct {
+    background-color: #228b22;
+}
+
+.incorrect {
+    background:red;
+}
+
+.selected {
+    background:#8686ff;
+}
+
+#errorDisplay {
+    color: red;
+    padding:10px;
+    font-size: 18px;
+}
+
+#radio {
+    border:1px solid #767676;
+    text-align:left;
+    border-radius:4px;
+    padding:5px;
+    margin-left:auto;
+    margin-right:auto;
+    display:inline-block;
+}
+
+#form {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding:10px;
+    width: 350px;
+    margin-left:auto;
+    margin-right:auto;
+}

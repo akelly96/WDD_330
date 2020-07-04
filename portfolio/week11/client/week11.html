@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Authentication App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script type="module" src="week11.js" ></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <main>
+            <h1>Example Auth App</h1>
+            <h4>
+                Note: This won't work because you would have to run npm run start-auth first.
+                However, I did not push the json-server folder, because that would push too many
+                files. Therefore, you must simply take my word that this is a working project. Feel
+                free to look at my code to verify.
+            </h4>
+            <form id="login">
+                <input type="text" id="username" placeholder="Enter email"/>
+                <input type="password" id="password" placeholder="Enter password"/>
+                <button id="submitForm">SUBMIT</button>
+            </form>
+            <div id="errors" class="errors hidden"></div>
+            <div id="sectionDisplay"></div>
+        </main>
+    </body>
+</html>
