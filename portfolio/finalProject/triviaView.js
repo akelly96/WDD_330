@@ -6,10 +6,14 @@ export default class triviaView {
         this.submitted = false;
         this.selected = false;
         this.errors = document.querySelector("#errorDisplay");
+        this.score = document.querySelector("#score");
+        this.results = document.querySelector("#results");
     }
 
     async displayOptions(controller) {
         let category = document.querySelector("#category");
+        let radio = document.querySelector("#radio");
+        let changed = false;
         category.innerHTML =`
         <option value="" default>Any Category</option>
         <option value="&category=9">General Knowledge</option>
@@ -34,8 +38,49 @@ export default class triviaView {
         <option value="&category=28">Vehicles</option>
         <option value="&category=29">Entertainment: Comics</option>
         <option value="&category=30">Science Gadgets</option>
-        <option value="&category=31">Entertainment: Japanese Anime & Manga</option>
+        <option value="&category=31">Entertainment: Japanese Anime & Manga</option>;
         <option value="&category=32">Entertainment: Cartoon & Animations</option>`
+        
+        radio.innerHTML = `
+        <input type="radio" name="type" value="" id="any" checked/>
+        <label for="any">Any Type</label><br/>
+        <input type="radio" name="type" value="&type=multiple" id="multiple"/>
+        <label for="multiple">Multiple Choice</label><br/>
+        <input type="radio" name="type" value="&type=boolean" id="boolean"/>
+        <label for="boolean">True/False</label`;
+
+        category.addEventListener("change", () => {
+            let value = parseInt(category.value.substring(10));
+            switch (value){
+                case 10:
+                case 13:
+                case 16:
+                case 25:
+                case 26:
+                case 29:
+                case 30:
+                    radio.innerHTML = `
+                    <input type="radio" name="type" value="&type=multiple" id="multiple" checked/>
+                    <label for="multiple">Multiple Choice</label><br/>
+                    `
+                    changed = true;
+                    break;
+                default:
+                    if (changed) {
+                        radio.innerHTML = `
+                        <input type="radio" name="type" value="" id="any" checked/>
+                        <label for="any">Any Type</label><br/>
+                        <input type="radio" name="type" value="&type=multiple" id="multiple"/>
+                        <label for="multiple">Multiple Choice</label><br/>
+                        <input type="radio" name="type" value="&type=boolean" id="boolean"/>
+                        <label for="boolean">True/False</label>
+                        `
+                        changed = false;
+                    }
+                    break;
+            }
+        });
+        
         let selectButton = document.createElement("div");
         selectButton.innerHTML = "START QUIZ";
         selectButton.className = "button";
@@ -50,13 +95,19 @@ export default class triviaView {
                 }
             }
             controller.startGame(category, checkedType);
-        })
+        });
         document.getElementById("form").appendChild(selectButton);
     }
     async renderQuestions(triviaQuestion){
-        this.answers = [...triviaQuestion.incorrect_answers];
-        this.answers.push(triviaQuestion.correct_answer);
-        this.shuffleArray();
+        this.answers = [];
+        if (triviaQuestion.type != "boolean"){
+            this.answers = [...triviaQuestion.incorrect_answers];
+            this.answers.push(triviaQuestion.correct_answer);
+            this.shuffleArray();
+        } else {
+            this.answers[0] = "True";
+            this.answers[1] = "False";
+        }
         this.question.innerHTML = `${triviaQuestion.question}`;
         this.answerSheet.innerHTML = "";
         this.answers.forEach(answer => {
@@ -81,7 +132,7 @@ export default class triviaView {
     async shuffleArray(){
         let length = this.answers.length - 1;
         for(let i = length; i > 0; i--) {
-            const j = Math.floor(Math.random() * i);
+            const j = Math.floor(Math.random() * (i + 1));
             const temp = this.answers[i];
             this.answers[i] = this.answers[j];
             this.answers[j] = temp;
@@ -109,5 +160,30 @@ export default class triviaView {
 
     async displayError(error) {
         this.errors.innerHTML = error;
+    }
+    
+    async setScore(correct) {
+        this.score.innerHTML = `SCORE: ${correct} / 10`;
+        this.score.style.display = "block";
+    }
+
+    async displayResults(parent, correct) {
+        parent.style.display = "none";
+        this.score.style.display = "none";
+        
+        let mainMenu = document.createElement("div");
+        mainMenu.classList = "button";
+        mainMenu.innerHTML = "<p class='buttonText'>MAIN MENU</p>";
+        mainMenu.addEventListener("click", () => {
+            this.results.innerHTML = "";
+            document.querySelector("#form").style.display = "block";
+        });
+
+        let finalScore = document.createElement("div");
+        finalScore.innerHTML = `
+        <h2>FINAL SCORE</h2>
+        <h3>${correct} / 10</h3>`;
+        this.results.appendChild(finalScore);
+        this.results.appendChild(mainMenu);
     }
  }

@@ -8,6 +8,8 @@ export default class triviaController {
         this.triviaQuestions = [];
         this.questionTracker = 0;
         this.selected = false;
+        this.correct = 0;
+        this.buttonsCreated = false;
     }
 
     async init(controller) {
@@ -18,36 +20,53 @@ export default class triviaController {
         let loading = document.getElementById("loading");
         loading.innerHTML = "LOADING...";
         await this.getTriviaQuestionsByCategory(category, type);
-        this.parentElement.style.display = "block";
+        if (this.triviaQuestions) {
+            await this.triviaView.setScore(this.correct);
+            this.parentElement.style.display = "block";
+            if (!this.buttonsCreated){
+                this.addButtons();
+                this.buttonsCreated = true;
+            } else {
+                document.getElementById("submitAnswer").style.display = "inline-block";
+            }
+        }
         loading.innerHTML = "";
-        this.addButtons();
     }
 
     async getTriviaQuestionsByCategory(category, type){
         this.triviaQuestions = await this.trivia.getTriviaQuestions(category, type);
-        this.triviaView.renderQuestions(this.triviaQuestions.results[this.questionTracker], this.parentElement);
+        if (this.triviaQuestions){
+            this.triviaView.renderQuestions(this.triviaQuestions.results[this.questionTracker]);
+        }
     }
     
     async addButtons() {
         let submitButton = document.createElement("div");
+        submitButton.id = "submitAnswer";
         submitButton.classList = "button";
-        submitButton.innerHTML = "<p class='buttonText'>SUBMIT ANSWER</p>"
+        submitButton.innerHTML = "<p class='buttonText'>SUBMIT ANSWER</p>";
 
         let nextButton = document.createElement("div");
         nextButton.classList = "button";
         nextButton.innerHTML = "<p class='buttonText'>NEXT QUESTION</p>";
         nextButton.style.display = "none";
 
+        
+        let resultsButton = document.createElement("div");
+        resultsButton.classList = "button";
+        resultsButton.innerHTML = "<p class='buttonText'>VIEW RESULTS</p>";
+        resultsButton.style.display = "none";
+
         submitButton.addEventListener("click", async () => {
             this.selected = await this.triviaView.getSelected();
             if (this.questionTracker < 10 && this.selected){
                 submitButton.style.display = "none";
-                nextButton.style.display = "inline-block";
                 let correct_answer = document.createElement("div");
                 correct_answer.innerHTML = `${this.triviaQuestions.results[this.questionTracker].correct_answer}`;
                 let selected = document.querySelector(".selected");
                 if (selected.innerHTML === correct_answer.innerHTML) {
-                    selected.className = "correct"; 
+                    selected.className = "correct";
+                    this.correct++; 
                 } else {
                     selected.className = "incorrect";
                     let answers = document.getElementsByClassName("answers");
@@ -59,27 +78,44 @@ export default class triviaController {
                 }
                 this.questionTracker++;
                 this.triviaView.setSubmitted(true);
+                this.triviaView.setScore(this.correct);
             } else if (!this.selected) {
                 let error = "Please select an answer!"
                 this.triviaView.displayError(error)
-            } else {
+            }
 
+            if (this.questionTracker < 10 && this.selected) {
+                nextButton.style.display = "inline-block";
+            } else if (this.selected) {
+                resultsButton.style.display = "inline-block";
             }
         });
 
         nextButton.addEventListener("click", () => {
             nextButton.style.display = "none";
-            if (this.questionTracker < 10) {
-                submitButton.style.display = "inline-block";
-                this.triviaView.renderQuestions(this.triviaQuestions.results[this.questionTracker], this.parentElement);
-            } else {
-
-            }
+            submitButton.style.display = "inline-block";
+            this.triviaView.renderQuestions(this.triviaQuestions.results[this.questionTracker]);
             this.triviaView.setSubmitted(false);
             this.triviaView.setSelected(false);
         });
 
+        resultsButton.addEventListener("click", () => {
+            this.triviaView.displayResults(this.parentElement, this.correct);
+            resultsButton.style.display = "none";
+            this.resetGame();
+        })
+
         this.parentElement.appendChild(submitButton);
         this.parentElement.appendChild(nextButton);
+        this.parentElement.appendChild(resultsButton);
+    }
+
+    async resetGame() {
+        this.triviaQuestions = [];
+        this.questionTracker = 0;
+        this.selected = false;
+        this.correct = 0;
+        this.triviaView.setSubmitted(false);
+        this.triviaView.setSelected(false);
     }
 }

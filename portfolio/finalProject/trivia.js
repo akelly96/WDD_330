@@ -9,7 +9,6 @@ export default class trivia {
 
     async getTriviaQuestions(category, type) {
         let url = this.baseUrl + type + category;
-        console.log(url);
         this.triviaQuestions = await getJSON(url);
         return this.triviaQuestions;
     }
