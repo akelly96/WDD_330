@@ -167,7 +167,7 @@ export default class triviaView {
         this.score.style.display = "block";
     }
 
-    async displayResults(parent, correct) {
+    async displayResults(parent, correct, endResults) {
         parent.style.display = "none";
         this.score.style.display = "none";
         
@@ -183,7 +183,20 @@ export default class triviaView {
         finalScore.innerHTML = `
         <h2>FINAL SCORE</h2>
         <h3>${correct} / 10</h3>`;
-        this.results.appendChild(finalScore);
+
+        let answerViews = document.createElement("div");
+        answerViews.id = "answerViews";
+        endResults.forEach(result => {
+            answerViews.innerHTML += `
+            <div class="answerView">
+                <div class=${result.correct ? "correctResult" : "incorrectResult"}>${result.question}</div>
+                <div class="resultAnswer">Your Answer: ${result.userInput}</div>
+                <div class="resultCorrectAnswer">Correct Answer: ${result.correctAnswer}</div>
+            </div>`
+        });
+
         this.results.appendChild(mainMenu);
+        this.results.appendChild(finalScore);
+        this.results.appendChild(answerViews);
     }
  }

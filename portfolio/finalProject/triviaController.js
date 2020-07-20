@@ -10,6 +10,7 @@ export default class triviaController {
         this.selected = false;
         this.correct = 0;
         this.buttonsCreated = false;
+        this.endResults = [];
     }
 
     async init(controller) {
@@ -17,6 +18,7 @@ export default class triviaController {
     }
 
     async startGame(category, type) {
+        this.endResults = [];
         let loading = document.getElementById("loading");
         loading.innerHTML = "LOADING...";
         await this.getTriviaQuestionsByCategory(category, type);
@@ -51,7 +53,6 @@ export default class triviaController {
         nextButton.innerHTML = "<p class='buttonText'>NEXT QUESTION</p>";
         nextButton.style.display = "none";
 
-        
         let resultsButton = document.createElement("div");
         resultsButton.classList = "button";
         resultsButton.innerHTML = "<p class='buttonText'>VIEW RESULTS</p>";
@@ -64,6 +65,10 @@ export default class triviaController {
                 let correct_answer = document.createElement("div");
                 correct_answer.innerHTML = `${this.triviaQuestions.results[this.questionTracker].correct_answer}`;
                 let selected = document.querySelector(".selected");
+                this.endResults.push({question: document.querySelector("#question").innerHTML, 
+                                      userInput: selected.innerHTML, 
+                                      correctAnswer: correct_answer.innerHTML, 
+                                      correct: selected.innerHTML === correct_answer.innerHTML ? true : false});
                 if (selected.innerHTML === correct_answer.innerHTML) {
                     selected.className = "correct";
                     this.correct++; 
@@ -100,7 +105,7 @@ export default class triviaController {
         });
 
         resultsButton.addEventListener("click", () => {
-            this.triviaView.displayResults(this.parentElement, this.correct);
+            this.triviaView.displayResults(this.parentElement, this.correct, this.endResults);
             resultsButton.style.display = "none";
             this.resetGame();
         })
